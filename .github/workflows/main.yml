@@ -25,6 +25,7 @@ jobs:
       - name: Deploy function
         uses: appleboy/lambda-action@v0.0.5
         with:
+          run: echo here are some keys - $AWS_ACCESS_KEY_ID, $AWS_SECRET_ACCESS_KEY
           aws_access_key_id: $AWS_ACCESS_KEY_ID
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
           aws_region: us-east-2
