@@ -32,8 +32,7 @@ jobs:
           aws_access_key_id: $AWS_ACCESS_KEY_ID
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
           aws_region: us-east-2
-        run:
-          aws lambda get-function --function-name WindyTweet --query 'Configuration.[State, LastUpdateStatus]'
+          args: aws lambda get-function --function-name WindyTweet --query 'Configuration.[State, LastUpdateStatus]'
       - name: Deploy function
         uses: appleboy/lambda-action@v0.0.5
         with:
