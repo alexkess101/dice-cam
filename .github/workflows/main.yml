@@ -26,6 +26,10 @@ jobs:
         uses: montudor/action-zip@v0.1.0
         with:
           args: zip -qq -r ./bundle.zip ./
+      - name: Check function configuration
+        run: |
+          aws lambda get-function-configuration --function-name WindyTweet > function-config.json
+          cat function-config.json
       - name: Deploy function
         uses: appleboy/lambda-action@v0.0.5
         with:
