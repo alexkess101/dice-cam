@@ -22,17 +22,14 @@ jobs:
           python-version: 3.10.11
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - run: aws lambda get-function --function-name WindyTweet --query 'Configuration.[State, LastUpdateStatus]'
+        env:
+          AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+          AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
           args: zip -qq -r ./bundle.zip ./
-      - name: Check function configuration
-        uses: vfarcic/aws-cli
-        with:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
-          aws_region: us-east-2
-          args: aws lambda get-function --function-name WindyTweet --query 'Configuration.[State, LastUpdateStatus]'
       - name: Deploy function
         uses: appleboy/lambda-action@v0.0.5
         with:
