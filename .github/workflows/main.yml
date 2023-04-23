@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/out@v2
+        uses: actions/checkout@v2
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
@@ -26,6 +26,8 @@ jobs:
         uses: montudor/action-zip@v0.1.0
         with:
           args: zip -qq -r ./bundle.zip ./
+      - name: Test
+        run: echo here are some keys - $AWS_ACCESS_KEY_ID, $AWS_SECRET_ACCESS_KEY
       - name: Deploy function
         uses: appleboy/lambda-action@v0.0.5
         with:
