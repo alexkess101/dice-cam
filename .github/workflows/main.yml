@@ -20,4 +20,4 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install awscli
-      - run: AWS_ACCESS_KEY_ID=AKIAXZGHGBSYMQLKGL6B AWS_SECRET_ACCESS_KEY=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 aws s3 --region us-east-2 ls
+      - run: AWS_ACCESS_KEY_ID=AKIAXZGHGBSYJLUANEB4 AWS_SECRET_ACCESS_KEY=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 aws s3 --region us-east-2 ls
