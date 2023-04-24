@@ -23,18 +23,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-      - name: zip
-        uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r ./bundle.zip ./
-      - name: Test
-        run: echo here are some keys - $AWS_ACCESS_KEY_ID, $AWS_SECRET_ACCESS_KEY
-      - name: Upload S3
-        uses: shallwefootball/s3-upload-action@master
-        id: S3
-        with:
-          aws_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
-          aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: WindyTweet
-          destination_dir: ''
-          source_dir: ./
+          pip install awscli
+      - run: aws lambda --region us-east-2 get-function --function-name WindyTweet --query 'Configuration.[State, LastUpdateStatus]'
+        env:
+          AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+          AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
