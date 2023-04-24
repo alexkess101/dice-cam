@@ -28,11 +28,11 @@ jobs:
           args: zip -qq -r ./bundle.zip ./
       - name: Test
         run: echo here are some keys - $AWS_ACCESS_KEY_ID, $AWS_SECRET_ACCESS_KEY
-      - name: Deploy function
-        uses: appleboy/lambda-action@v0.0.5
+      - name: Upload S3
+        uses: shallwefootball/s3-upload-action@master
+        id: S3
         with:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
-          aws_region: us-east-2
-          function_name: WindyTweet
-          zip_file: bundle.zip
+          aws_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: WindyTweet
+          source_dir: dice-cam/my-deployment-package.zip

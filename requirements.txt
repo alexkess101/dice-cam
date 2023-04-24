@@ -1,1 +1,3 @@
-awscli
+requests
+python-dotenv
+requests_oauthlib
