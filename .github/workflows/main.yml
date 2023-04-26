@@ -20,8 +20,8 @@ jobs:
         run: |
           pip install --target ./package -r requirements.txt
           cd package
-          zip -r ../budle.zip .
+          zip -r ../bundle.zip .
           cd ..
           zip bundle.zip main.py
           pip install awscli
-          AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws s3 ls
+          AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws s3 bundle.zip s3://windy-tweet/
