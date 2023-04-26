@@ -26,6 +26,8 @@ jobs:
           zip bundle.zip main.py
       - name: Upload to s3
         run: |
+          ls -la
+          pwd
           aws s3 sync ./bundle.zip s3://windy-tweet/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
