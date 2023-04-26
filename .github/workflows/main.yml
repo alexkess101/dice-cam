@@ -18,6 +18,7 @@ jobs:
           python-version: 3.10.11
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install --target ./package -r requirements.txt
           cd package
           zip -r ../bundle.zip .
